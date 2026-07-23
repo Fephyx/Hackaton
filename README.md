@@ -1,4 +1,4 @@
-### MyBank - Konzolová bankovní aplikace v jazyce C#
+# MyBank - Konzolová bankovní aplikace v jazyce C#
 
 <!--img-->
 <!--img-->
@@ -12,7 +12,7 @@ Uživatel může **spravovat svůj účet, provádět finanční operace, sledov
 
 ## Hlavní funkce
 
-# Správa uživatelů 
+### Správa uživatelů 
 - registrace nového klienta
 
 ```csharp
