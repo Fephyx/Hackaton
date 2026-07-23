@@ -92,7 +92,7 @@ Funkce:
 
 ## Instalace
 
-# 1. Klonování projektu
+## 1. Klonování projektu
 
 ```bash
 git clone https://github.com/Fephyx/Hackaton
