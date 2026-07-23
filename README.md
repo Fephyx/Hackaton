@@ -1,5 +1,4 @@
 # MyBank - Konzolová bankovní aplikace v jazyce C#
-<img src="[https://example.com/obrazek.png](https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Visual_Studio_Icon_2026.svg/330px-Visual_Studio_Icon_2026.svg.png)" width="300">
 <!--img-->
 <!--img-->
 <!--img-->
