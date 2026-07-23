@@ -73,22 +73,10 @@ Console.WriteLine("4. Historie transakcí");
 Console.WriteLine("5. Karta");
 Console.WriteLine("6. Konec");
 Console.Write("Vyber možnost: ");
-
 ```
 
 ## Historie transakcí
 - Každá operace je uložena a zaznamenána
-
-## Spořící účet
-
-*Aplikace obsahuje možnost vytvořit spořicí účet.*
-**Roční sazba: 2.5%**
-
-Funkce:
-- ukládání peněz
-- výpočet úroku
-- zobrazení očekávaného zisku
-
 
 ## Instalace
 
