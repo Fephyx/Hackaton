@@ -1,0 +1,132 @@
+### MyBank - Konzolová bankovní aplikace v jazyce C#
+
+<!--img-->
+<!--img-->
+<!--img-->
+
+## Popis projektu
+
+**MyBank** je konzolová bankovní aplikace vytvořená v jazyce **C#**
+Uživatel může **spravovat svůj účet, provádět finanční operace, sledovat historii transakcí** a využívat **spořicí služby**.
+
+
+## Hlavní funkce
+
+# Správa uživatelů 
+- registrace nového klienta
+
+```csharp
+Console.WriteLine("Registrujte se zde:");
+Console.WriteLine("Zmačkněte Enter pro pokračování...");
+Console.ReadKey();
+Console.Clear();
+Console.WriteLine("Zadejte své Jméno: ");
+string name = Console.ReadLine();
+Console.WriteLine("Zadejte své příjmení:");
+string secondname = Console.ReadLine();
+
+Console.WriteLine("Vytvorte si pin (Min 4 cislice):");
+int pin = int.Parse(Console.ReadLine());
+Console.Clear();
+Console.WriteLine("Znovu zadejte pin:");
+int pin2 = int.Parse(Console.ReadLine());
+while (pin != pin2)
+{
+    Console.Clear();
+    Console.WriteLine("Piny se neshodují. Zkuste to znovu.");
+    Console.ReadKey();
+    Console.Clear();
+    Console.WriteLine("Vytvorte si pin:");
+    pin = int.Parse(Console.ReadLine());
+    Console.Clear();
+    Console.WriteLine("Znovu zadejte pin:");
+    pin2 = int.Parse(Console.ReadLine());
+        }
+
+Console.Clear();
+Console.WriteLine("Registrace dokončena!");
+ucet = new BankovniUcet();
+```
+
+- Přihlášení pomocí hesla **kdikoliv**
+- **Změna** hesla 
+<!--=========================== dodělat ==============================-->
+
+## Bankovní účet
+- Zobrazení zůstatku
+- Číslo bankovního účtu
+- Číslo karty 
+- CVC
+- datum expirace
+
+## Finanční operace
+- Vklad peněz
+- Výběr peněz
+- Převod mezi bankami
+
+```csharp
+Console.WriteLine("===== MyBank =====");
+Console.WriteLine("1. Zobrazit stav účtu");
+Console.WriteLine("2. Vložit peníze");
+Console.WriteLine("3. Vybrat peníze");
+Console.WriteLine("4. Historie transakcí");
+Console.WriteLine("5. Karta");
+Console.WriteLine("6. Konec");
+Console.Write("Vyber možnost: ");
+
+```
+
+## Historie transakcí
+- Každá operace je uložena a zaznamenána
+
+## Spořící účet
+
+*Aplikace obsahuje možnost vytvořit spořicí účet.*
+**Roční sazba: 2.5%**
+
+Funkce:
+- ukládání peněz
+- výpočet úroku
+- zobrazení očekávaného zisku
+
+
+## Instalace
+
+# 1. Klonování projektu
+
+```bash
+git clone https://github.com/Fephyx/Hackaton
+```
+
+## 2. Otevření projektu
+
+Otevřete: 
+
+```
+MyBank.sln
+```
+
+a aplikaci:
+
+- Visual studio
+- Rider
+- Visual Studio code
+
+<!--img aplikaci-->
+
+## 3. Spuštění
+
+```bash
+dotnet run
+```
+
+---
+
+### Autoři: 
+
+- Corven (Matyáš Vindiš)
+- Zyxxyc {Patrik Polák}
+- Fephyx [Antonín Sejpka]
+
+Rok: 
+2026
