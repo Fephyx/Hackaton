@@ -199,6 +199,13 @@ dotnet run
 
 ---
 
+## Prezentace
+
+[Prezentace - MyBank](https://canva.link/lon35qakrgz5jtb)
+
+---
+
+
 ### Autoři: 
 
 - Corven (Matyáš Vindiš)
