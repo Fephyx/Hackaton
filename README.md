@@ -155,6 +155,10 @@ int volba = int.Parse(Console.ReadLine());
      - BlackJack
      - Slot machine
 
+```diff
+žlutý text { }
+```
+
 ### Slot machine
 - **3** stejná čísla = x10 sázka
 - **2** stejná čísla = x2 sázka
@@ -166,6 +170,13 @@ int volba = int.Parse(Console.ReadLine());
 - JSON {}
 - .NET
 ```
+
+## Zabezpečení
+
+Máme **2** funkce zabezpečení
+1. Hashování
+   - Díky hashování se PIN neuloží normálně ale jako směs písmen a čísel
+   - (př.: 1234❌ -> 03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4✅)
 
 ## Instalace
 
