@@ -1041,7 +1041,7 @@ class Program
                 heslo.Append(klavesa.KeyChar);
 
                 Console.Write(klavesa.KeyChar);   // zobrazí číslo
-                Thread.Sleep(500);                // počká 0,5 sekundy
+                Thread.Sleep(200);                // počká 0,5 sekundy
                 Console.Write("\b*");             // přepíše číslo na *
             }
     }
