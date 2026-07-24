@@ -53,40 +53,37 @@ ucet = new BankovniUcet();
 - Po 3 špatných pokusech se účet zablokuje
 - **Změna** pinu 
 ```csharp
-            else if (volba == 8)
-            {
-                Console.Write("Zadej starý PIN: ");
-                int staryPin = int.Parse(Console.ReadLine());
+else if (volba == 8)
+{
+    Console.Write("Zadej starý PIN: ");
+    int staryPin = int.Parse(Console.ReadLine());
 
+    if (HashPin(staryPin.ToString()) == ucet.Pin)
+    {
+        Console.Write("Zadej nový PIN: ");
+        int novyPin = int.Parse(Console.ReadLine());
 
-                if (HashPin(staryPin.ToString()) == ucet.Pin)
-                {
-                    Console.Write("Zadej nový PIN: ");
-                    int novyPin = int.Parse(Console.ReadLine());
+        Console.Write("Zadej nový PIN znovu: ");
+        int novyPin2 = int.Parse(Console.ReadLine());
 
+        if (novyPin == novyPin2 && novyPin >= 1000)
+        {
+            ucet.Pin = HashPin(novyPin.ToString());
 
-                    Console.Write("Zadej nový PIN znovu: ");
-                    int novyPin2 = int.Parse(Console.ReadLine());
+            Ulozit(ucty, soubor, ucet);
 
-
-                    if (novyPin == novyPin2 && novyPin >= 1000)
-                    {
-                        ucet.Pin = HashPin(novyPin.ToString());
-
-                        Ulozit(ucty, soubor, ucet);
-
-                        Console.WriteLine("PIN byl úspěšně změněn.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("PINy se neshodují nebo je PIN moc krátký.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Špatný starý PIN.");
-                }
-            }
+            Console.WriteLine("PIN byl úspěšně změněn.");
+        }
+        else
+        {
+            Console.WriteLine("PINy se neshodují nebo je PIN moc krátký.");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Špatný starý PIN.");
+    }
+}
 
 ```
 
