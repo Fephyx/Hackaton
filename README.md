@@ -45,7 +45,7 @@ ucet = new BankovniUcet();
 ```
 - Ukládání uživatelů do .json
 
-```bash
+```csharp
 ======================== doplnit kod =============================
 ```
 
