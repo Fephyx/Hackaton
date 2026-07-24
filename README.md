@@ -161,7 +161,7 @@ int volba = int.Parse(Console.ReadLine());
 - ostatní = **prohra**
 
 ## Technologie 
-```
+```json
 - C#
 - JSON {}
 - .NET
