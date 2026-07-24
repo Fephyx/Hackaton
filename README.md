@@ -1,5 +1,5 @@
 # MyBank - Konzolová bankovní aplikace v jazyce C#
-![Visual Studio](https://www.c-sharpcorner.com/UploadFile/NewsImages/09092025171417PM/visual+studio.png)
+![Visual Studio](C:\Users\lsprog\Tonda\Visual_Studio_Icon_2026.svg)
 <!--img-->
 <!--img-->
 <!--img-->
