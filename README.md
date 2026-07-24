@@ -201,9 +201,7 @@ dotnet run
 
 ## Prezentace
 
-[Prezentace - MyBank](https://canva.link/lon35qakrgz5jtb)
-
----
+[Prezentace - MyBank »](https://canva.link/lon35qakrgz5jtb)
 
 
 ### Autoři: 
