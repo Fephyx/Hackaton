@@ -3,13 +3,13 @@
 ## Popis projektu
 
 **MyBank** je konzolová bankovní aplikace vytvořená v jazyce **C#**
-Uživatel může **spravovat svůj účet, provádět finanční operace, sledovat historii transakcí** a využívat **spořicí služby**.
+Uživatel může **spravovat svůj účet, provádět **finanční operace**, sledovat historii transakcí **a využívat **spořicí služby**.
 
 
 ## Hlavní funkce
 
 ### Správa uživatelů 
-- registrace nového klienta
+- **registrace** nového klienta
 
 ```csharp
 Console.WriteLine("Registrujte se zde:");
@@ -43,7 +43,7 @@ Console.Clear();
 Console.WriteLine("Registrace dokončena!");
 ucet = new BankovniUcet();
 ```
-- Ukládání uživatelů do .json
+- **Ukládání** uživatelů do **.json**
 
 ```csharp
 static void Ulozit(List<BankovniUcet> ucty, string soubor, BankovniUcet ucet)
@@ -115,15 +115,15 @@ else if (volba == 8)
 ```
 
 ## Bankovní účet
-- Zobrazení zůstatku
-- Číslo bankovního účtu
-- Číslo karty 
+- **Zobrazení** zůstatku
+- **Číslo** bankovního účtu
+- **Číslo** karty 
 
 ## Finanční operace
-- Vklad peněz
-- Výběr peněz
-- Půjčky
-- Splatit dluh
+- **Vklad** peněz
+- **Výběr** peněz
+- **Půjčky**
+- **Splatit*** dluh
 
 ```csharp
 Console.WriteLine("===== Bank Bank =====");
@@ -147,18 +147,18 @@ int volba = int.Parse(Console.ReadLine());
 ```
 
 ## Historie transakcí
-- Každá operace je uložena a zaznamenána
+- **Každá** operace je **uložena a zaznamenána**
 
 ## Kasíno
-- svoji kartu můžete použít i v našem kasínu
+- svoji kartu můžete **použít i v našem kasínu**
 - Hry:
-     - BlackJack
-     - Slot machine
+     - *BlackJack*
+     - *Slot machine*
 
 ### Slot machine
-- **3** stejná čísla = x10 sázka
-- **2** stejná čísla = x2 sázka
-- ostatní = **prohra**
+- **3** stejná čísla = *x10 sázka*
+- **2** stejná čísla = *x2 sázka*
+- ostatní = *prohra*
 
 ## Technologie 
 ```shell
@@ -171,8 +171,11 @@ int volba = int.Parse(Console.ReadLine());
 
 Máme **2** funkce zabezpečení
 1. Hashování
-   - Díky hashování se PIN neuloží normálně ale jako směs písmen a čísel
-   - (př.: 1234❌ -> 03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4✅)
+   - Díky **hashování** se PIN **neuloží normálně** ale jako ***směs písmen a čísel***
+   - (př.: **1234**❌ -> **03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4**✅)
+2. Password masking
+   - Password masking vám místo hesla které píšete ***ukáže hvězdičky***
+   - (př.: 1234❌ -> ****✅)
 
 ## Instalace
 
@@ -192,9 +195,9 @@ MyBank.sln
 
 a aplikaci:
 
-- Visual studio
-- Rider
-- Visual Studio code
+- *Visual studio*
+- *Rider*
+- *Visual Studio code*
 
 <!--img aplikaci-->
 
@@ -213,9 +216,9 @@ dotnet run
 
 ### Autoři: 
 
-- Corven (Matyáš Vindiš)
-- Zyxxyc {Patrik Polák}
-- Fephyx [Antonín Sejpka]
+- ***Corven*** (Matyáš Vindiš)
+- ***Zyxxyc*** {Patrik Polák}
+- ***Fephyx*** [Antonín Sejpka]
 
 Rok: 
-2026
+*2026*
