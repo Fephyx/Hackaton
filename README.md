@@ -44,6 +44,11 @@ Console.WriteLine("Registrace dokončena!");
 ucet = new BankovniUcet();
 ```
 - Ukládání uživatelů do .json
+
+```bash
+doplnit kod
+```
+
 - Přihlášení pomocí hesla **kdikoliv**
 - **Změna** hesla 
 <!--=========================== dodělat ==============================-->
