@@ -262,12 +262,14 @@ class Program
 
             if (volba == 1)
             {
+                Console.Clear() ;
                 Console.WriteLine($"Stav účtu: {accountBalance} Kč");
             }
 
             //vlozeni penez na ucet
             else if (volba == 2)
             {
+                Console.Clear();
                 Console.Write("Kolik chcete vložit? ");
 
                 int amount = int.Parse(Console.ReadLine());
@@ -290,6 +292,8 @@ class Program
             //vyber penez z uctu
             else if (volba == 3)
             {
+                Console.Clear();
+                Console.WriteLine($"Máte {accountBalance}Kč.");
                 Console.Write("Kolik chcete vybrat? ");
 
                 int vyber = int.Parse(Console.ReadLine());
@@ -318,6 +322,7 @@ class Program
             //zobrazeni historie transakci
             else if (volba == 4)
             {
+                Console.Clear();
                 Console.WriteLine("=== Historie transakcí ===");
 
 
@@ -338,6 +343,7 @@ class Program
             //zobrazeni karty
             else if (volba == 5)
             {
+                Console.Clear();
                 Console.WriteLine("Vaše karta:");
 
                 Console.WriteLine(ucet.Karta);
@@ -381,12 +387,14 @@ class Program
             //cislo uctu (zobrazeni)
             else if (volba == 7)
             {
+                Console.Clear();
                 Console.WriteLine($"Vase cislo uctu je: {ucet.CisloUctu}" + "/" + "1234");
             }
 
             //vyroba noveho pinu a jeho hashovani
             else if (volba == 8)
             {
+                Console.Clear();
                 Console.Write("Zadej starý PIN: ");
                 int staryPin = int.Parse(CistHeslo());
 
@@ -422,6 +430,7 @@ class Program
 
             else if (volba == 9)
             {
+                Console.Clear();
                 Console.Write("Kolik si chceš půjčit? ");
                 int pujcka = int.Parse(Console.ReadLine());
 
@@ -452,6 +461,7 @@ class Program
             //splatka dlufu s 5% uroku
             else if (volba == 10)
             {
+                Console.Clear();
                 if (ucet.Dluh == 0)
                 {
                     Console.WriteLine("Nemáš žádnou půjčku.");
@@ -507,6 +517,7 @@ class Program
 
             else if (volba == 11)
             {
+                Console.Clear();
                 konec = true;
             }
 
@@ -588,8 +599,8 @@ class Program
             Console.WriteLine($"║            ║ {cislo1,2} ║ {cislo2,2} ║ {cislo3,2} ║                ║");
             Console.WriteLine("║            ╚════╩════╩════╝                ║");
             Console.WriteLine("║                                            ║");
-            Console.WriteLine("║          $  JACKPOT = 3 STEJNÁ  $         ║");
-            Console.WriteLine("║          $  2 STEJNÁ = 2× VÝHRA $          ║");
+            Console.WriteLine("║          ★  JACKPOT = 3 STEJNÁ  ★         ║");
+            Console.WriteLine("║          ★  2 STEJNÁ = 2× VÝHRA ★         ║");
             Console.WriteLine("║                                            ║");
             Console.WriteLine("╚════════════════════════════════════════════╝");
 
