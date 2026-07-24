@@ -46,7 +46,7 @@ ucet = new BankovniUcet();
 - Ukládání uživatelů do .json
 
 ```bash
-doplnit kod
+======================== doplnit kod =============================
 ```
 
 - Přihlášení pomocí hesla **kdikoliv**
@@ -66,14 +66,7 @@ doplnit kod
 - Převod mezi bankami
 
 ```csharp
-Console.WriteLine("===== MyBank =====");
-Console.WriteLine("1. Zobrazit stav účtu");
-Console.WriteLine("2. Vložit peníze");
-Console.WriteLine("3. Vybrat peníze");
-Console.WriteLine("4. Historie transakcí");
-Console.WriteLine("5. Karta");
-Console.WriteLine("6. Konec");
-Console.Write("Vyber možnost: ");
+======== doplnit kod ===========
 ```
 
 ## Historie transakcí
