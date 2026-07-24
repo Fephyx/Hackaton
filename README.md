@@ -3,7 +3,7 @@
 ## Popis projektu
 
 **MyBank** je konzolová bankovní aplikace vytvořená v jazyce **C#**
-Uživatel může **spravovat svůj účet, provádět **finanční operace** A sledovat **historii transakcí**.
+Uživatel může **spravovat** svůj účet, provádět **finanční operace** A sledovat **historii transakcí**.
 
 
 ## Hlavní funkce
