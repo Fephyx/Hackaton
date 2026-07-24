@@ -573,23 +573,25 @@ class Program
             }
 
 
-            //random c´´islo
+            //random číslo
             int cislo1 = rnd.Next(1, 11);
             int cislo2 = rnd.Next(1, 11);
             int cislo3 = rnd.Next(1, 11);
 
 
-            //gamble machine
-            Console.WriteLine("      _______________________________");
-            Console.WriteLine("     /===============================\\");
-            Console.WriteLine("    /        $ GAMBLEMAT $            \\");
-            Console.WriteLine("   |----------------------------------|");
-            Console.WriteLine("   |                                  |");
-            Console.WriteLine($"   |        ┌────┬────┬────┐          |");
-            Console.WriteLine($"   |        │ {cislo1,2} │ {cislo2,2} │ {cislo3,2} │          |");
-            Console.WriteLine("   |        └────┴────┴────┘          |");
-            Console.WriteLine("   |                                  |");
-            Console.WriteLine("   |__________________________________|");
+            // Gamble Machine
+            Console.WriteLine("╔════════════════════════════════════════════╗");
+            Console.WriteLine("║              🎰 GAMBLEMAT 🎰              ║");
+            Console.WriteLine("╠════════════════════════════════════════════╣");
+            Console.WriteLine("║                                            ║");
+            Console.WriteLine("║            ╔════╦════╦════╗                ║");
+            Console.WriteLine($"║            ║ {cislo1,2} ║ {cislo2,2} ║ {cislo3,2} ║                ║");
+            Console.WriteLine("║            ╚════╩════╩════╝                ║");
+            Console.WriteLine("║                                            ║");
+            Console.WriteLine("║          ★  JACKPOT = 3 STEJNÁ  ★         ║");
+            Console.WriteLine("║          ★  2 STEJNÁ = 2× VÝHRA ★         ║");
+            Console.WriteLine("║                                            ║");
+            Console.WriteLine("╚════════════════════════════════════════════╝");
 
 
             //výhry
