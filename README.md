@@ -155,8 +155,6 @@ int volba = int.Parse(Console.ReadLine());
      - BlackJack
      - Slot machine
 
-<span style="color:yellow">{ }</span>
-
 ### Slot machine
 - **3** stejná čísla = x10 sázka
 - **2** stejná čísla = x2 sázka
