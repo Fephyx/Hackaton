@@ -160,6 +160,12 @@ int volba = int.Parse(Console.ReadLine());
 - **2** stejná čísla = x2 sázka
 - ostatní = **prohra**
 
+## Technologie 
+```
+- C#
+- JSON {}
+- .NET
+```
 
 ## Instalace
 
