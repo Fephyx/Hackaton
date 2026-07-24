@@ -46,6 +46,36 @@ ucet = new BankovniUcet();
 - Ukládání uživatelů do .json
 
 ```csharp
+static void Ulozit(List<BankovniUcet> ucty, string soubor, BankovniUcet ucet)
+{
+    static void Ulozit(List<BankovniUcet> ucty, string soubor, BankovniUcet ucet)
+    {
+        File.WriteAllText(
+            soubor,
+            JsonSerializer.Serialize(
+                ucty,
+                new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                }
+            )
+        );
+    }
+
+    File.WriteAllText(
+        soubor,
+        JsonSerializer.Serialize(
+            ucty,
+            new JsonSerializerOptions
+            {
+                WriteIndented = true
+            }
+        )
+    );
+}
+```
+
+```csharp
 ======================== doplnit kod =============================
 ```
 
