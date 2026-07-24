@@ -68,6 +68,7 @@ ucet = new BankovniUcet();
 
 ```csharp
 Console.WriteLine("===== Bank Bank =====");
+
 Console.WriteLine("1. Zobrazit stav účtu");
 Console.WriteLine("2. Vložit peníze");
 Console.WriteLine("3. Vybrat peníze");
@@ -81,7 +82,6 @@ Console.WriteLine("10. Splatit dluh");
 Console.WriteLine("11. Konec");
 
 Console.Write("Vyber možnost: ");
-
 
 int volba = int.Parse(Console.ReadLine());
 
