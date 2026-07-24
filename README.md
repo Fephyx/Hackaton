@@ -49,9 +49,46 @@ ucet = new BankovniUcet();
 ======================== doplnit kod =============================
 ```
 
-- Přihlášení pomocí hesla **kdikoliv**
+- Přihlášení pomocí PINU **kdikoliv**
+- Po 3 špatných pokusech se účet zablokuje
 - **Změna** pinu 
-<!--=========================== dodělat ==============================-->
+```csharp
+            else if (volba == 8)
+            {
+                Console.Write("Zadej starý PIN: ");
+                int staryPin = int.Parse(Console.ReadLine());
+
+
+                if (HashPin(staryPin.ToString()) == ucet.Pin)
+                {
+                    Console.Write("Zadej nový PIN: ");
+                    int novyPin = int.Parse(Console.ReadLine());
+
+
+                    Console.Write("Zadej nový PIN znovu: ");
+                    int novyPin2 = int.Parse(Console.ReadLine());
+
+
+                    if (novyPin == novyPin2 && novyPin >= 1000)
+                    {
+                        ucet.Pin = HashPin(novyPin.ToString());
+
+                        Ulozit(ucty, soubor, ucet);
+
+                        Console.WriteLine("PIN byl úspěšně změněn.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("PINy se neshodují nebo je PIN moc krátký.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Špatný starý PIN.");
+                }
+            }
+
+```
 
 ## Bankovní účet
 - Zobrazení zůstatku
@@ -93,6 +130,11 @@ int volba = int.Parse(Console.ReadLine());
 - Hry:
      - BlackJack
      - Slot machine
+
+### Slot machine
+- **3** stejná čísla = x10 sázka
+- **2** stejná čísla = x2 sázka
+- ostatní = **prohra**
 
 
 ## Instalace
