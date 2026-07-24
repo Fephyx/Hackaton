@@ -57,14 +57,12 @@ ucet = new BankovniUcet();
 - Zobrazení zůstatku
 - Číslo bankovního účtu
 - Číslo karty 
-- CVC
-- datum expirace
 
 ## Finanční operace
 - Vklad peněz
 - Výběr peněz
 - Půjčky
-- ====== doplit ostatni ========
+- Splatit dluh
 
 ```csharp
 Console.WriteLine("===== Bank Bank =====");
@@ -89,6 +87,13 @@ int volba = int.Parse(Console.ReadLine());
 
 ## Historie transakcí
 - Každá operace je uložena a zaznamenána
+
+## Kasíno
+- svoji kartu můžete použít i v našem kasínu
+- Hry:
+     - BlackJack
+     - Slot machine
+
 
 ## Instalace
 
