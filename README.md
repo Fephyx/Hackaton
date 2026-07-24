@@ -75,9 +75,6 @@ static void Ulozit(List<BankovniUcet> ucty, string soubor, BankovniUcet ucet)
 }
 ```
 
-```csharp
-======================== doplnit kod =============================
-```
 
 - Přihlášení pomocí PINU **kdikoliv**
 - Po 3 špatných pokusech se účet zablokuje
