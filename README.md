@@ -1,4 +1,5 @@
 # MyBank - Konzolová bankovní aplikace v jazyce C#
+![Visual Studio](https://www.c-sharpcorner.com/UploadFile/NewsImages/09092025171417PM/visual+studio.png)
 <!--img-->
 <!--img-->
 <!--img-->
@@ -46,7 +47,7 @@ Console.Clear();
 Console.WriteLine("Registrace dokončena!");
 ucet = new BankovniUcet();
 ```
-
+- Ukládání uživatelů do .json
 - Přihlášení pomocí hesla **kdikoliv**
 - **Změna** hesla 
 <!--=========================== dodělat ==============================-->
