@@ -1,7 +1,9 @@
-﻿using System;
+//kinhovny
+using System;
 using System.Text.Json;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 
 class Program
 {
@@ -11,16 +13,17 @@ class Program
 
         List<BankovniUcet> ucty = new List<BankovniUcet>();
 
-
-        // Načtení všech účtů
+        // Nacteni uctu ze souboru
         if (File.Exists(soubor))
         {
+            //Zjisti jesli uzivatel neni admin
             string data = File.ReadAllText(soubor);
 
             ucty = JsonSerializer.Deserialize<List<BankovniUcet>>(data)
                 ?? new List<BankovniUcet>();
             if (!ucty.Any(x => x.Admin))
             {
+                //Ptihlasoaci udaje admin uctu
                 BankovniUcet admin = new BankovniUcet();
 
                 admin.Jmeno = "Admin";
@@ -31,9 +34,8 @@ class Program
                 admin.Historie = new List<string>();
                 admin.Admin = true;
 
-
+                //vytvori admin uceta ulozi ho do souboru
                 ucty.Add(admin);
-
 
                 File.WriteAllText(
                     soubor,
@@ -48,20 +50,36 @@ class Program
         }
 
 
-        Console.WriteLine("===== Bank Bank =====");
+        Console.WriteLine("===== MyBank =====");
         Console.WriteLine();
 
 
-        Console.Write("Zadejte své jméno: ");
-        string name = Console.ReadLine();
+        string name = ZiskejText("Zadejte své jméno: ");
 
+        string secondname = ZiskejText("Zadejte své příjmení: ");
 
-        Console.Write("Zadejte své příjmení: ");
-        string secondname = Console.ReadLine();
+        static string ZiskejText(string zprava)
+        {
+            string vstup;
+
+            do
+            {
+                //system aby uzivatel nemohl zacat prazdny misto
+                Console.Write(zprava);
+                vstup = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(vstup))
+                {
+                    Console.WriteLine("Toto pole nesmí být prázdné.");
+                }
+
+            } while (string.IsNullOrWhiteSpace(vstup));
+
+            return vstup;
+        }
 
         // Hledání účtu
-        BankovniUcet ucet = ucty.FirstOrDefault(
-            x => x.Jmeno == name && x.Prijmeni == secondname);
+        BankovniUcet ucet = ucty.FirstOrDefault(x => x.Jmeno == name && x.Prijmeni == secondname);
 
         // Pokud účet existuje
         if (ucet != null)
@@ -74,12 +92,12 @@ class Program
 
 
             Console.Write("Zadejte PIN: ");
-            int zadanyPin = int.Parse(Console.ReadLine());
+            int zadanyPin = int.Parse(CistHeslo());
 
 
             int pokusy = 0;
 
-
+            //po trech spatnych pokusech se zablokuje ucet a ukonci program
             while (HashPin(zadanyPin.ToString()) != ucet.Pin)
             {
                 pokusy++;
@@ -95,7 +113,7 @@ class Program
                 Console.WriteLine($"Špatný PIN. Zbývá {3 - pokusy} pokusů.");
 
                 Console.Write("Zadejte PIN: ");
-                zadanyPin = int.Parse(Console.ReadLine());
+                zadanyPin = int.Parse(CistHeslo());
             }
 
 
@@ -110,7 +128,7 @@ class Program
 
 
 
-        // Pokud účet neexistuje
+        // Pokud ucet neexistuje zacne regiptrace noveho uctu
         else
         {
             Console.Clear();
@@ -127,25 +145,25 @@ class Program
             ucet.Prijmeni = secondname;
 
 
-
+            //vytvoreni pinu a jeho hashovani
             Console.Write("Vytvořte číselný PIN: ");
-            int pin = int.Parse(Console.ReadLine());
+            int pin = int.Parse(CistHeslo());
 
 
             Console.Write("Zadejte PIN znovu: ");
-            int pin2 = int.Parse(Console.ReadLine());
+            int pin2 = int.Parse(CistHeslo());
 
-
+            //kdyz se piny neschoduji tak se znovu zadavaji
             while (pin != pin2)
             {
                 Console.WriteLine("Piny se neshodují.");
 
                 Console.Write("Vytvořte číselný PIN: ");
-                pin = int.Parse(Console.ReadLine());
+                pin = int.Parse(CistHeslo());
 
 
                 Console.Write("Zadejte PIN znovu: ");
-                pin2 = int.Parse(Console.ReadLine());
+                pin2 = int.Parse(CistHeslo());
             }
 
 
@@ -175,6 +193,7 @@ class Program
                 }
             }
 
+            //generace cisla uctu
             Random generatorUctu = new Random();
 
             ucet.CisloUctu = "";
@@ -209,32 +228,26 @@ class Program
             Thread.Sleep(1500);
         }
 
-
-
         Console.Clear();
 
-
+        //menu normalniho uzivatele
         int accountBalance = ucet.Zustatek;
 
         List<string> historie = ucet.Historie;
 
-
         bool konec = false;
-
-
 
         while (!konec)
         {
             Console.Clear();
 
-
-            Console.WriteLine("===== Bank Bank =====");
+            Console.WriteLine("===== MyBank =====");
             Console.WriteLine("1. Zobrazit stav účtu");
             Console.WriteLine("2. Vložit peníze");
             Console.WriteLine("3. Vybrat peníze");
             Console.WriteLine("4. Historie transakcí");
             Console.WriteLine("5. Debitní Karta");
-            Console.WriteLine("6. Použít kartu v kasínu");
+            Console.WriteLine("6. Kasíno");
             Console.WriteLine("7. Číslo účtu");
             Console.WriteLine("8. Změna pinu");
             Console.WriteLine("9. Pujcka");
@@ -252,7 +265,7 @@ class Program
                 Console.WriteLine($"Stav účtu: {accountBalance} Kč");
             }
 
-
+            //vlozeni penez na ucet
             else if (volba == 2)
             {
                 Console.Write("Kolik chcete vložit? ");
@@ -274,7 +287,7 @@ class Program
                 Console.WriteLine("Peníze vloženy.");
             }
 
-
+            //vyber penez z uctu
             else if (volba == 3)
             {
                 Console.Write("Kolik chcete vybrat? ");
@@ -302,6 +315,7 @@ class Program
                     Console.WriteLine("Výběr úspěšný.");
                 }
             }
+            //zobrazeni historie transakci
             else if (volba == 4)
             {
                 Console.WriteLine("=== Historie transakcí ===");
@@ -321,8 +335,7 @@ class Program
                 }
             }
 
-
-
+            //zobrazeni karty
             else if (volba == 5)
             {
                 Console.WriteLine("Vaše karta:");
@@ -330,6 +343,7 @@ class Program
                 Console.WriteLine(ucet.Karta);
             }
 
+            //menu pro kasino
             else if (volba == 6)
 
             {
@@ -341,6 +355,7 @@ class Program
 
                 int volba1 = Convert.ToInt32(Console.ReadLine());
 
+                //vyber hry v kasinu
                 if (volba1 == 1)
                 {
                     Console.WriteLine("Spouštím Gamblemat...");
@@ -356,7 +371,6 @@ class Program
                 else if (volba1 == 3)
                 {
                     continue;
-
                 }
                 else
                 {
@@ -364,28 +378,29 @@ class Program
                 }
             }
 
-
+            //cislo uctu (zobrazeni)
             else if (volba == 7)
             {
                 Console.WriteLine($"Vase cislo uctu je: {ucet.CisloUctu}" + "/" + "1234");
             }
 
+            //vyroba noveho pinu a jeho hashovani
             else if (volba == 8)
             {
                 Console.Write("Zadej starý PIN: ");
-                int staryPin = int.Parse(Console.ReadLine());
+                int staryPin = int.Parse(CistHeslo());
 
-
+                //zadani stareho a noveho pinu
                 if (HashPin(staryPin.ToString()) == ucet.Pin)
                 {
                     Console.Write("Zadej nový PIN: ");
-                    int novyPin = int.Parse(Console.ReadLine());
+                    int novyPin = int.Parse(CistHeslo());
 
 
                     Console.Write("Zadej nový PIN znovu: ");
-                    int novyPin2 = int.Parse(Console.ReadLine());
+                    int novyPin2 = int.Parse(CistHeslo());
 
-
+                    //pokud se pin 2 a pin 1 shoduji tak se ulozi do souboru
                     if (novyPin == novyPin2 && novyPin >= 1000)
                     {
                         ucet.Pin = HashPin(novyPin.ToString());
@@ -396,7 +411,7 @@ class Program
                     }
                     else
                     {
-                        Console.WriteLine("PINy se neshodují nebo je PIN moc krátký.");
+                        Console.WriteLine("PINy se neshodují.");
                     }
                 }
                 else
@@ -404,6 +419,7 @@ class Program
                     Console.WriteLine("Špatný starý PIN.");
                 }
             }
+
             else if (volba == 9)
             {
                 Console.Write("Kolik si chceš půjčit? ");
@@ -433,7 +449,7 @@ class Program
                     Console.WriteLine("Neplatná částka.");
                 }
             }
-
+            //splatka dlufu s 5% uroku
             else if (volba == 10)
             {
                 if (ucet.Dluh == 0)
@@ -461,6 +477,7 @@ class Program
                     }
                     else if (splatka == ucet.Dluh)
                     {
+                        // Splacení celé půjčky a ulozeni do souboru
                         ucet.Zustatek -= splatka;
                         accountBalance = ucet.Zustatek;
                         ucet.Dluh = 0;
@@ -471,6 +488,7 @@ class Program
                     }
                     else
                     {
+                        //state splaceni casti pujcky a ulozeni do souboru
                         ucet.Zustatek -= splatka;
                         accountBalance = ucet.Zustatek;
 
@@ -497,7 +515,7 @@ class Program
                 Console.WriteLine("Neplatná volba.");
             }
 
-
+            // navrat do menu
 
             if (!konec)
             {
@@ -511,19 +529,10 @@ class Program
         }
 
     }
+    //Gamble machine
     static void Gamblemat(BankovniUcet ucet, List<BankovniUcet> ucty, string soubor)
     {
         Console.Clear();
-
-
-        Console.WriteLine(@"
-██████╗  █████╗ ███████╗██╗███╗   ██╗ ██████╗
-██╔════╝ ██╔══██╗██╔════╝██║████╗  ██║██╔═══██╗
-██║  ███╗███████║███████╗██║██╔██╗ ██║██║   ██║
-██║   ██║██╔══██║╚════██║██║██║╚██╗██║██║   ██║
-╚██████╔╝██║  ██║███████║██║██║ ╚████║╚██████╔╝
- ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝
-");
 
 
         Random rnd = new Random();
@@ -531,7 +540,7 @@ class Program
 
         while (!konecKasina)
         {
-
+            //když nemáš peníze
             if (ucet.Zustatek == 0)
             {
                 Console.Clear();
@@ -539,7 +548,7 @@ class Program
                 Thread.Sleep(1000);
                 break;
             }
-
+            //zůstatek na účtě
             Console.Clear();
             Console.WriteLine($"Máš {ucet.Zustatek} Kč.");
 
@@ -548,7 +557,7 @@ class Program
             int bet = int.Parse(Console.ReadLine());
 
 
-
+            //sázky
             if (bet > ucet.Zustatek)
             {
                 Console.WriteLine("Nemůžeš vsadit víc peněz než máš!");
@@ -564,13 +573,13 @@ class Program
             }
 
 
-
+            //random c´´islo
             int cislo1 = rnd.Next(1, 11);
             int cislo2 = rnd.Next(1, 11);
             int cislo3 = rnd.Next(1, 11);
 
 
-
+            //gamble machine
             Console.WriteLine("      _______________________________");
             Console.WriteLine("     /===============================\\");
             Console.WriteLine("    /        $ GAMBLEMAT $            \\");
@@ -583,7 +592,7 @@ class Program
             Console.WriteLine("   |__________________________________|");
 
 
-
+            //výhry
             if (cislo1 == cislo2 && cislo2 == cislo3)
             {
                 ucet.Zustatek += bet * 10;
@@ -607,7 +616,7 @@ class Program
                 Console.WriteLine("Dvě stejná čísla! Vyhrál jsi 2x sázku.");
             }
 
-
+            //prohra
             else
             {
                 ucet.Zustatek -= bet;
@@ -639,7 +648,7 @@ class Program
 
         }
     }
-
+    //Blackjack
     static void Blackjack(BankovniUcet ucet, List<BankovniUcet> ucty, string soubor)
     {
         Console.Clear();
@@ -651,6 +660,7 @@ class Program
         while (!konec)
         {
 
+            //peníze
             if (ucet.Zustatek == 0)
             {
                 Console.Clear();
@@ -675,17 +685,18 @@ class Program
                 Console.WriteLine("Nemáš dostatek peněz.");
                 continue;
             }
-
+            //karty
             string[] balicek =
             {
             "A","2","3","4","5","6","7","8","9","10","J","Q","K"
         };
-
+            //score hráče a dealera
             int score = 0;
             int scoreDealera = 0;
 
             bool hraSkoncila = false;
 
+            //hodnota karet
             while (!hraSkoncila)
             {
                 string karta = balicek[rnd.Next(balicek.Length)];
@@ -700,7 +711,8 @@ class Program
                     hodnota = Convert.ToInt32(karta);
 
                 score += hodnota;
-
+                
+                //karta a hodnoty
                 Console.Clear();
                 Console.WriteLine("===== BLACKJACK =====");
                 Console.WriteLine($"Padla ti karta: {karta}");
@@ -722,7 +734,7 @@ class Program
                     Console.WriteLine("BLACKJACK!");
                     break;
                 }
-
+                //dobírání karet a zůstávání
                 Console.WriteLine();
                 Console.WriteLine("1 - Další karta");
                 Console.WriteLine("2 - Zůstat");
@@ -750,7 +762,7 @@ class Program
                 Console.ReadLine();
                 continue;
             }
-            // Dealer bere karty do 17
+            // Dealer
             while (scoreDealera < 17)
             {
                 string kartaDealera = balicek[rnd.Next(balicek.Length)];
@@ -769,7 +781,7 @@ class Program
                 Console.WriteLine($"Dealer líznul: {kartaDealera}");
                 Thread.Sleep(700);
             }
-
+            //finální score
             Console.WriteLine();
             Console.WriteLine($"Tvé skóre: {score}");
             Console.WriteLine($"Skóre dealera: {scoreDealera}");
@@ -821,7 +833,7 @@ class Program
         }
 
     }
-
+    //Menu pro admina kde muze ovladat ucty a jejich zustatky
     static void AdminMenu(List<BankovniUcet> ucty, string soubor)
     {
         bool konec = false;
@@ -830,7 +842,7 @@ class Program
         while (!konec)
         {
             Console.Clear();
-
+            //menu
             Console.WriteLine("===== ADMIN PANEL =====");
             Console.WriteLine("1. Zobrazit všechny účty");
             Console.WriteLine("2. Změnit zůstatek");
@@ -842,7 +854,7 @@ class Program
 
             int volba = int.Parse(Console.ReadLine());
 
-
+            //volba kde je videt jmeno a zustatek vsech uctu krome admina
             if (volba == 1)
             {
                 foreach (var ucet in ucty)
@@ -856,7 +868,7 @@ class Program
             }
 
 
-
+            //tady se zmeni zustatek uctu podle jmena
             else if (volba == 2)
             {
                 Console.Write("Jméno účtu: ");
@@ -899,7 +911,7 @@ class Program
             }
 
 
-
+            //tady se smaze ucet podle jmena
             else if (volba == 3)
             {
                 Console.Write("Jméno účtu ke smazání: ");
@@ -907,16 +919,13 @@ class Program
                 string jmeno = Console.ReadLine();
 
 
-                BankovniUcet nalezen = ucty.FirstOrDefault(
-                    x => x.Jmeno == jmeno
-                );
-
+                BankovniUcet nalezen = ucty.FirstOrDefault(x => x.Jmeno == jmeno);
 
                 if (nalezen != null && !nalezen.Admin)
                 {
                     ucty.Remove(nalezen);
 
-
+                    //ulozi ucty do souboru
                     File.WriteAllText(
                         soubor,
                         JsonSerializer.Serialize(
@@ -936,7 +945,7 @@ class Program
                 }
             }
 
-
+            //konec admin menu
 
             else if (volba == 4)
             {
@@ -951,7 +960,7 @@ class Program
 
 
 
-    // Funkce pro ukládání účtů
+    // Funkce pro ukladani uctu do souboru
 
     static void Ulozit(List<BankovniUcet> ucty, string soubor, BankovniUcet ucet)
     {
@@ -981,7 +990,7 @@ class Program
 
     }
 
-
+    //tady se hashuji piny
     static string HashPin(string pin)
     {
 
@@ -1005,11 +1014,42 @@ class Program
 
     }
 
+
+    static string CistHeslo()
+{
+    StringBuilder heslo = new StringBuilder();
+
+    while (true)
+    {
+        ConsoleKeyInfo klavesa = Console.ReadKey(true);
+
+        if (klavesa.Key == ConsoleKey.Enter)
+        {
+            Console.WriteLine();
+            break;
+        }
+
+        if (klavesa.Key == ConsoleKey.Backspace && heslo.Length > 0)
+        {
+            heslo.Remove(heslo.Length - 1, 1);
+            Console.Write("\b \b");
+        }
+        else if (char.IsDigit(klavesa.KeyChar))
+        {
+                heslo.Append(klavesa.KeyChar);
+
+                Console.Write(klavesa.KeyChar);   // zobrazí číslo
+                Thread.Sleep(500);                // počká 0,5 sekundy
+                Console.Write("\b*");             // přepíše číslo na *
+            }
+    }
+
+    return heslo.ToString();
 }
 
+}
 
-// Třída účtu
-
+//zde jsou ulozena informace o ustu: jmena prijmeni pinu karty zustatku a historie transakci
 class BankovniUcet
 {
     public int Dluh { get; set; }
