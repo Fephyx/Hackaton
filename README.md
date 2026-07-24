@@ -1,7 +1,5 @@
 # MyBank - Konzolová bankovní aplikace v jazyce C#
 
-![Ukázka aplikace](C:\Users\lsprog\Tonda\Visual_Studio_Icon_2026.png)
-
 ## Popis projektu
 
 **MyBank** je konzolová bankovní aplikace vytvořená v jazyce **C#**
@@ -52,7 +50,7 @@ ucet = new BankovniUcet();
 ```
 
 - Přihlášení pomocí hesla **kdikoliv**
-- **Změna** hesla 
+- **Změna** pinu 
 <!--=========================== dodělat ==============================-->
 
 ## Bankovní účet
@@ -65,10 +63,28 @@ ucet = new BankovniUcet();
 ## Finanční operace
 - Vklad peněz
 - Výběr peněz
-- Převod mezi bankami
+- Půjčky
+- ====== doplit ostatni ========
 
 ```csharp
-======== doplnit kod ===========
+Console.WriteLine("===== Bank Bank =====");
+Console.WriteLine("1. Zobrazit stav účtu");
+Console.WriteLine("2. Vložit peníze");
+Console.WriteLine("3. Vybrat peníze");
+Console.WriteLine("4. Historie transakcí");
+Console.WriteLine("5. Debitní Karta");
+Console.WriteLine("6. Použít kartu v kasínu");
+Console.WriteLine("7. Číslo účtu");
+Console.WriteLine("8. Změna pinu");
+Console.WriteLine("9. Pujcka");
+Console.WriteLine("10. Splatit dluh");
+Console.WriteLine("11. Konec");
+
+Console.Write("Vyber možnost: ");
+
+
+int volba = int.Parse(Console.ReadLine());
+
 ```
 
 ## Historie transakcí
